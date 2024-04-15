@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cool LangChain Agent</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Interact with the LangChain Agent</h1>
+  <input type="file" id="fileInput" multiple> <!-- 'multiple' allows selecting multiple files -->
+  <button onclick="loadAndSearchDocuments()">Create Vector Store</button>
+  <div id="output-container"></div>
+
+  <input type="text" id="input-box" placeholder="Enter your query">
+  <button id="invoke-button">Invoke Agent</button>
+  <p id="output"></p>
+  <!-- <script> -->
+  <!-- <script type="module" src="pdf.mjs"> -->
+    <script src="dist/bundle.js"></script> 
+    // import { loadAndSearchDocuments } from 'pdf.mjs';
+
+    const invokeButton = document.getElementById('invoke-button');
+    const inputBox = document.getElementById('input-box');
+    const outputContainer = document.getElementById('output-container'); // Assuming you want to display results here
+
+    invokeButton.addEventListener('click', async () => {
+      try {
+        const results = await loadAndSearchDocuments();
+        // Process and display the results
+        outputContainer.textContent = JSON.stringify(results, null, 2);
+      } catch (error) {
+        console.error("Error:", error);
+        outputContainer.textContent = "An error occurred.";
+      }
+    });
+    // other functionlalities like creare a vector database from docs
+  <!-- </script> -->
+</body>
+
+</html>
