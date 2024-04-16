@@ -1,3 +1,4 @@
+// initial implementation of agents, agent2 is more up to date
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { createOpenAIFunctionsAgent, AgentExecutor } from "langchain/agents";
@@ -29,6 +30,21 @@ const tools = [
   }),
 
   new DynamicTool({
+    name: "RAGtool",
+    description:
+      "This tool is invoked when the user asks questions about the documents that are uplaoded.",
+    // Define your prompt template for the edge case tool
+    prompt: PromptTemplate.fromTemplate(
+      "Answer the following question: {query}"
+    ),
+    // Define your output parser for the edge case tool
+    func: async (query) => {
+      // Implement your logic to query a general knowledge base (e.g., search engine APIs)
+      // and return the answer as a string
+    },
+  }),
+
+  new DynamicTool({
     name: "VertexSearchTool",
     description:
       "Search for information on a formula 1 drivers using Vertex AI Search",
@@ -36,7 +52,7 @@ const tools = [
       const projectId = "mrl-mrt-s-prj-visualisation";
       const location = "global"; // Options: 'global', 'us', 'eu'
       const collectionId = "default_collection"; // Options: 'default_collection'
-      const dataStoreId = "bq-drivers_1712227458255";
+      const dataStoreId = "quali_1713191117703";
       const servingConfigId = "default_config"; // Options: 'default_config'
       const searchQuery = "Google"; // edit for user input coming here
 

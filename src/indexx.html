@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cool LangChain Agent</title>
   <style>
-    /* Add your CSS styles here */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -37,11 +35,12 @@
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      margin-bottom: 15px;
     }
 
     button {
       padding: 10px 20px;
-      background-color: #007bff;
+      background-color: #6600ff;
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -49,41 +48,34 @@
     }
 
     button:hover {
-      background-color: #0056b3;
+      background-color: #343900;
+    }
+    /* Even spacing for elements */
+    #output-container, #input-box, #invoke-button, #output {
+      margin-bottom: 15px; /* Consistent spacing between elements */
+    }
+
+    #output-container, #input-box, #invoke-button, #output {
+      margin-left: 15px; /* Consistent spacing between elements */
     }
   </style>
 </head>
 
 <body>
-  <h1>Interact with the LangChain Agent</h1>
-  <input type="file" id="fileInput" multiple> <!-- 'multiple' allows selecting multiple files -->
-  <button onclick="loadAndSearchDocuments()">Create Vector Store</button>
+  <script src="agent2.mjs"></script>
+  <script> 
+  </script>
+  
+  <h1>Freddie Langchain Version</h1>
+  
+  <input type="file" id="fileInput" multiple>
+  <button onclick="">Create Vector Store</button> <!-- Add onclick event -->
+  
   <div id="output-container"></div>
-
+  
   <input type="text" id="input-box" placeholder="Enter your query">
-  <button id="invoke-button">Invoke Agent</button>
+  <button id="invoke-button" onclick="sayhelo()">Invoke Agent</button>
   <p id="output"></p>
-  <!-- <script> -->
-  <!-- <script type="module" src="pdf.mjs"> -->
-    <script src="dist/bundle.js"></script> 
-    // import { loadAndSearchDocuments } from 'pdf.mjs';
-
-    const invokeButton = document.getElementById('invoke-button');
-    const inputBox = document.getElementById('input-box');
-    const outputContainer = document.getElementById('output-container'); // Assuming you want to display results here
-
-    invokeButton.addEventListener('click', async () => {
-      try {
-        const results = await loadAndSearchDocuments();
-        // Process and display the results
-        outputContainer.textContent = JSON.stringify(results, null, 2);
-      } catch (error) {
-        console.error("Error:", error);
-        outputContainer.textContent = "An error occurred.";
-      }
-    });
-    // other functionlalities like creare a vector database from docs
-  <!-- </script> -->
 </body>
 
 </html>

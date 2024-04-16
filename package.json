@@ -2,7 +2,7 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "agent2.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,7 +16,9 @@
     "@langchain/google-genai": "^0.0.11",
     "@langchain/google-vertexai": "^0.0.5",
     "@langchain/openai": "^0.0.28",
+    "axios": "^1.6.8",
     "cheerio": "^1.0.0-rc.12",
+    "child_process": "^1.0.2",
     "hnswlib-node": "^1.4.2",
     "http-server": "^14.1.1",
     "langchain": "^0.1.33",

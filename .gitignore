@@ -1,3 +1,5 @@
 node_modules
 data/
 does not work/
+.env
+dist/

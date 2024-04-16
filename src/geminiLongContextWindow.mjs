@@ -41,9 +41,10 @@ const generativeModel = vertex_ai.preview.getGenerativeModel({
 });
 
 const chat = generativeModel.startChat({});
-// const searchQuery = "tell me about the two races in 2020";
+const searchQuery = "tell me about the two races in 2020";
 // const searchQuery = "give me some memorable moments at the bahrain grand prix"; 
-const searchQuery = "what is the circuit name?"; 
+const searchQuery2 = "what is the circuit name?"; 
+// const searchQuery = "what was my first question?"; 
 
 async function sendMessage(message) {
   const streamResult = await chat.sendMessageStream(message);
@@ -58,7 +59,7 @@ async function generateContent(result) {
   if (result.length > 0) {
     const relevantDocument = result[0].pageContent;
 
-    const prompt = `Based on the following information, write a short summary about ${searchQuery}:
+    const prompt = `Based on the following information, write a short summary about ${searchQuery} and the response returned:
 
     ${relevantDocument}
 
@@ -98,10 +99,11 @@ async function processPDFs() {
 
   // Perform similarity search
   const resultOne = await vectorStore.similaritySearch(searchQuery, 1);
+  const resulttwo = await vectorStore.similaritySearch(searchQuery2, 1);
   // Generate content based on the search result
   await generateContent(resultOne);
+  await generateContent(resulttwo);
 }
 
 // Call the function to execute the code
 processPDFs();
-// generateContent();
